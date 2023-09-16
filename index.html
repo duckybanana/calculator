@@ -22,82 +22,218 @@
       <button class="a" id="nine">9</button>
     </div>
     <div class="signs">
-        <button class="sign">+</button>
-        <button class="sign">-</button>
-        <button class="sign">*</button>
-        <button class="sign">/</button>
-        <button class="sign">=</button>
+        <button class="sign" id="plus">+</button>
+        <button class="sign" id="minus">-</button>
+        <button class="sign" id="multiply">*</button>
+        <button class="sign" id="divide">/</button>
+        <button class="sign" id="equals">=</button>
         <button class="clear">Clear</button>
     </div>
   </div>
   
 
 <script>
-  function add(a, b) {return a + b};
-  function subtract(a, b) {return a - b};
-  function multiply(a, b) {return a * b};
-  function divide(a, b) {return a / b};
+  let val = '';
   let aNum;
   let bNum;
   let sign;
-  function operate(aNum, sign, bNum) {
-    if (sign === '+') add(aNum, bNum);
-    else if (sign === '-') subtract(aNum, bNum);
-    else if (sign === '*') multiply(aNum, bNum);
-    else if (sign === '/') divide(aNum, bNum);
+  let answer;
+  let doneOperate = false;
+  function add(a, b) {answer = a + b; return answer};
+  function subtract(a, b) {answer = a - b; return answer};
+  function multiply(a, b) {answer = a * b; return answer};
+  function divide(a, b) {answer = a / b; return answer};
+
+  function operate(aNum = 1, sign = 'plus', bNum = 2) {
+    if (sign === 'plus') {return add(aNum, bNum)}
+    else if (sign === 'minus') subtract(aNum, bNum);
+    else if (sign === 'multiply') multiply(aNum, bNum);
+    else if (sign === 'divide') divide(aNum, bNum);
+    
   }
+  
   const display = document.querySelector('.display');
   
   const zero = document.querySelector('#zero');
   zero.addEventListener('click', () => {
+    if(doneOperate) {
+      display.textContent = '';
+    }
     display.textContent += '0';
-
+    val += '0';
+    
   });
   const one = document.querySelector('#one');
   one.addEventListener('click', () => {
+    if(doneOperate) {
+      display.textContent = '';
+    }
     display.textContent += '1';
-
+    val += '1';
   });
   const two = document.querySelector('#two');
   two.addEventListener('click', () => {
+    if(doneOperate) {
+      display.textContent = '';
+    }
     display.textContent += '2';
-    
+    val += '2';
   });
   const three = document.querySelector('#three');
   three.addEventListener('click', () => {
+    if(doneOperate) {
+      display.textContent = '';
+    }
     display.textContent += '3';
-    
+    val += '3';
   });
   const four = document.querySelector('#four');
   four.addEventListener('click', () => {
+    if(doneOperate) {
+      display.textContent = '';
+    }
     display.textContent += '4';
-    
+    val += '4';
   });
   const five = document.querySelector('#five');
   five.addEventListener('click', () => {
+    if(doneOperate) {
+      display.textContent = '';
+    }
     display.textContent += '5';
-    
+    val += '5';
   });
   const six = document.querySelector('#six');
   six.addEventListener('click', () => {
+    if(doneOperate) {
+      display.textContent = '';
+    }
     display.textContent += '6';
-    
+    val += '6';
   });
   const seven = document.querySelector('#seven');
   seven.addEventListener('click', () => {
+    if(doneOperate) {
+      display.textContent = '';
+    }
     display.textContent += '7';
-    
+    val += '7';
   });
   const eight = document.querySelector('#eight');
   eight.addEventListener('click', () => {
+    if(doneOperate) {
+      display.textContent = '';
+    }
     display.textContent += '8';
-    
+    val += '8';
   });
   const nine = document.querySelector('#nine');
   nine.addEventListener('click', () => {
+    if(doneOperate) {
+      display.textContent = '';
+    }
     display.textContent += '9';
-    
+    val += '9';
   });
+  
+  const numbers = document.querySelectorAll('.a');
+  const plus = document.querySelector('#plus');
+  const minus = document.querySelector('#minus'); 
+  const times = document.querySelector('#multiply'); 
+  const div = document.querySelector('#divide');
+  const equals = document.querySelector('#equals');
+  const clear = document.querySelector('.clear');
+     
+  plus.addEventListener('click', () => {
+    if(!aNum) {
+      aNum = Number(val);
+      display.textContent = '';
+      val = '';
+      sign = 'plus';
+    } else if(aNum) {
+      bNum = Number(val);
+      display.textContent = '';
+      sign = 'plus';
+      operate(aNum,sign,bNum);
+      display.textContent = answer;
+      aNum = answer;
+      val = '';
+      doneOperate = true;
+  }}
+  );
+  minus.addEventListener('click', () => {
+    if(!aNum) {
+      aNum = Number(val);
+      display.textContent = '';
+      val = '';
+      sign = 'minus';
+    } else if(aNum) {
+      bNum = Number(val);
+      display.textContent = '';
+      sign = 'minus';
+      operate(aNum,sign,bNum);
+      display.textContent = answer;
+      aNum = answer;
+      val = '';
+      doneOperate = true;
+  }}
+  );
+  times.addEventListener('click', () => {
+    if(!aNum) {
+      aNum = Number(val);
+      display.textContent = '';
+      val = '';
+      sign = 'multiply';
+    } else if(aNum) {
+      bNum = Number(val);
+      display.textContent = '';
+      sign = 'multiply';
+      operate(aNum,sign,bNum);
+      display.textContent = answer;
+      aNum = answer;
+      val = '';
+      doneOperate = true;
+  }}
+  );
+  div.addEventListener('click', () => {
+    if(!aNum) {
+      aNum = Number(val);
+      display.textContent = '';
+      val = '';
+      sign = 'divide';
+    } else if(aNum) {
+      bNum = Number(val);
+      display.textContent = '';
+      sign = 'divide';
+      operate(aNum,sign,bNum);
+      display.textContent = answer;
+      aNum = answer;
+      val = '';
+      doneOperate = true;
+  }}
+  );
+  equals.addEventListener('click', () => {
+    if(aNum) {
+      bNum = Number(val);
+      display.textContent = '';
+    operate(aNum,sign,bNum);
+    display.textContent = answer;
+    aNum = answer;
+    val = '';
+    doneOperate = true;
+    }
+  })
+
+
+
+  // if (answer) {
+  //   one.addEventListener('click', () => {
+  //     display.textContent = '';
+  //   })
+  // }
+
+
+
 
 
 </script>
