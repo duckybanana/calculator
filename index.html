@@ -27,7 +27,7 @@
         <button class="sign" id="multiply">*</button>
         <button class="sign" id="divide">/</button>
         <button class="sign" id="equals">=</button>
-        <button class="dot">.</button>
+        <!-- <button class="dot">.</button> -->
         <button class="clear">Clear</button>
     </div>
   </div>
@@ -55,13 +55,13 @@
   
   const display = document.querySelector('.display');
   
-  const dot = document.querySelector('.dot');
-  dot.addEventListener('click', () => {
-    if (display.textContent.includes('.')) {
-      display.textContent += '';
-    }
-    display.textContent += '.';
-  })
+  // const dot = document.querySelector('.dot');
+  // dot.addEventListener('click', () => {
+  //   if (display.textContent.includes('.')) {
+  //     display.textContent += '';
+  //   }
+  //   display.textContent += '.';
+  // })
   const zero = document.querySelector('#zero');
   zero.addEventListener('click', () => {
     if(doneOperate) {
