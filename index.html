@@ -157,8 +157,9 @@
       display.textContent = '';
       val = '';
       sign = 'plus';
-    } else if(aNum) {
+    } else if(typeof aNum === 'number' && aNum !== 0) {
       bNum = Number(val);
+      console.log(bNum)
       display.textContent = '';
       sign = 'plus';
       operate(aNum,sign,bNum);
@@ -174,11 +175,12 @@
       display.textContent = '';
       val = '';
       sign = 'minus';
-    } else if(aNum) {
+    } else if(typeof aNum === 'number' && aNum !== 0) {
       bNum = Number(val);
       display.textContent = '';
       sign = 'minus';
       operate(aNum,sign,bNum);
+      console.log(answer)
       display.textContent = answer;
       aNum = answer;
       val = '';
@@ -191,16 +193,20 @@
       display.textContent = '';
       val = '';
       sign = 'multiply';
-    } else if(aNum) {
-      bNum = Number(val);
+    } 
+    else if(typeof aNum === 'number' && aNum !== 0) {
+      bNum = val == "" ? 1: Number(val);
       display.textContent = '';
       sign = 'multiply';
       operate(aNum,sign,bNum);
+      console.log(answer)
+      console.log(val)
       display.textContent = answer;
       aNum = answer;
       val = '';
       doneOperate = true;
-  }}
+  }
+}
   );
   div.addEventListener('click', () => {
     if(!aNum) {
@@ -208,25 +214,34 @@
       display.textContent = '';
       val = '';
       sign = 'divide';
-    } else if(aNum) {
+    } 
+    else if(typeof aNum === 'number' && aNum !== 0) {
       bNum = Number(val);
       display.textContent = '';
       sign = 'divide';
+      if(bNum){
       operate(aNum,sign,bNum);
+      console.log(answer)
       display.textContent = answer;
       aNum = answer;
       val = '';
       doneOperate = true;
+      }
   }}
   );
   equals.addEventListener('click', () => {
-    if(aNum) {
+    // if(doneOperate) {
+      
+    // }
+    if(typeof aNum === 'number' && aNum !== 0) {
       bNum = Number(val);
       display.textContent = '';
     operate(aNum,sign,bNum);
+    console.log(answer)
     display.textContent = answer;
     aNum = answer;
     val = '';
+    sign = '';
     doneOperate = true;
     }
   })
